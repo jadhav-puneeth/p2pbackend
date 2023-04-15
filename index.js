@@ -1,7 +1,6 @@
 const mongoose=require('mongoose');
 const Document=require('./documentSchema');
-const BASE_URL = process.env.BASE_URL
-const DATABASE=process.env.DATABASE
+const BASE_URL = process.env.BASE_URL 
 
 
 
