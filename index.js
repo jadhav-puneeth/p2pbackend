@@ -1,6 +1,5 @@
 const mongoose=require('mongoose');
 const Document=require('./documentSchema');
-const BASE_URL = process.env.BASE_URL 
 
 
 
@@ -13,7 +12,7 @@ mongoose.connect("mongodb+srv://jadhav_puneeth:puneeth29@cluster0.at5zrd9.mongod
 
 const io =require('socket.io')(3001,{
     cors :{
-        origin : `${BASE_URL}`, 
+        origin : `http://localhost:3000`, 
         methods:["GET","POST"],
     },   
 });
