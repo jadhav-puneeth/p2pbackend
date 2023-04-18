@@ -1,7 +1,26 @@
 const mongoose=require('mongoose');
 const Document=require('./documentSchema');
+const express=require('express')
+const app=express();
+const http=require("http").createServer(app);
+const {Server} =require("socket.io");
+const cors=require('cors')
 
 const port=process.env.PORT || 3001;
+app.use(cors()); 
+
+const io =new Server(http,{
+    cors :{
+        origin : process.env.CONNECT_URL, 
+        methods:["GET","POST"],
+    },   
+});
+
+http.listen(port,()=>{
+    console.log("server running on port 3001");
+})
+
+
 
 mongoose.connect(process.env.MONGODB_URL,{
     useNewUrlParser: true,
@@ -9,13 +28,6 @@ mongoose.connect(process.env.MONGODB_URL,{
 }).then(()=>{console.log("connected to db")}).catch((err)=>{
     console.log(err);
 })
-
-const io =require('socket.io')(port,{
-    cors :{
-        origin : process.env.CONNECT_URL, 
-        methods:["GET","POST"],
-    },   
-});
 
 
 
