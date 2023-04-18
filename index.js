@@ -1,16 +1,16 @@
 const mongoose=require('mongoose');
 const Document=require('./documentSchema');
 
+const port=process.env.PORT || 3001;
 
-
-mongoose.connect("mongodb+srv://jadhav_puneeth:puneeth29@cluster0.at5zrd9.mongodb.net/Peer2peer?retryWrites=true&w=majority",{
+mongoose.connect(process.env.MONGODB_URL,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(()=>{console.log("connected to db")}).catch((err)=>{
     console.log(err);
 })
 
-const io =require('socket.io')(3001,{
+const io =require('socket.io')(port,{
     cors :{
         origin : `http://localhost:3000`, 
         methods:["GET","POST"],
